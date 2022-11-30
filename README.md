@@ -11,5 +11,5 @@
 ### Using jupyterlab
 1. Access with a browser http://localhost:8888/lab
 ### Starting and Stopping Containers
-1. Starting`docker stop <コンテナの名前>`
-2. Stopping`docker start <コンテナの名前>`
+1. Starting`docker stop <container name>`
+2. Stopping`docker start <container name>`
