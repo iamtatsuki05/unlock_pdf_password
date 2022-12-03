@@ -12,10 +12,14 @@ def unlock_pdf_password(
     password_in_upper=True,
     password_in_sign=True,
     password_length=None,
+    password_start_length=None,
 ):
     chars = []
     is_flag = False
-    counter = 0
+    if password_start_length is None:
+        counter = password_start_length
+    else:
+        counter = 0
     if password_in_number:
         chars.extend(list(string.digits))
     if password_in_lower:
