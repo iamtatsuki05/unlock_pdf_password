@@ -25,6 +25,9 @@ def unlock_pdf_password(
     if password_in_sign:
         chars.extend(list(string.punctuation))
     while is_flag != True:
+        if counter >= password_length:
+            print("Password not found")
+            break
         counter += 1
         for password in itertools.product(chars, repeat=counter):
             try:
