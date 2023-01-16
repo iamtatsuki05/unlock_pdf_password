@@ -17,7 +17,7 @@ def unlock_pdf_password(
     chars = []
     is_flag = False
     if password_start_length is not None:
-        counter = password_start_length
+        counter = password_start_length - 1
     else:
         counter = 0
     if password_in_number:
