@@ -41,7 +41,7 @@ def unlock_pdf_password(
                 pdf_unlocked = pikepdf.new()
                 pdf_unlocked.pages.extend(pdf.pages)
                 pdf_unlocked.save(output_pdf_path)
-                is_flag = True
+                print(f"Password is {password}.")
+                return 0
             except:
                 print(f"{password} is not correct.")
-    print(f"Password is {password}.")
