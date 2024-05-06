@@ -1,0 +1,29 @@
+version: "3.2"
+services:
+  unlock_pdf_password:
+    tty: true
+    stdin_open: true
+    user: root
+    working_dir: /app
+    build:
+      context: .
+      dockerfile: docker/cpu/Dockerfile
+      target: dev
+      # secrets:
+      #   - github_token
+      args:
+        progress: plain
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+    ports:
+      - "8501:8501"
+    command:
+      poetry run streamlit run src/app.py
+    environment:
+        PYTHONPATH: "/app/src"
+        PYTHONUNBUFFERED: 1
+# secrets:
+#   github_token:
+#     file: ${HOME}/.git-credentials
