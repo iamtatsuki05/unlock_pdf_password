@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  python-cpu:
+  unlock_pdf_password:
     tty: true
     stdin_open: true
     user: root
@@ -18,13 +18,9 @@ services:
         source: ./
         target: /app
     ports:
-      - "8888:8888"
+      - "8501:8501"
     command:
-      poetry run jupyter lab
-        --ip=0.0.0.0
-        --allow-root
-        --NotebookApp.token=''
-        --port=8888
+      poetry run streamlit run src/app.py
     environment:
         PYTHONPATH: "/app/src"
         PYTHONUNBUFFERED: 1
