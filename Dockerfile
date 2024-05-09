@@ -63,4 +63,32 @@ COPY src ./src
 RUN poetry install
 
 # Hugging Face Hub Settings
+FROM dev AS hf
+WORKDIR ${WORKDIR}
+
+# REF: https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo#:~:text=As%20discussed%20in,the%20Dockerfile.
+# Set up a new user named "user" with user ID 1000
+RUN useradd -m -u 1000 user
+
+# Switch to the "user" user
+USER user
+
+# Set home to the user's home directory
+ENV HOME=/home/user \
+  PATH=/home/user/.local/bin:$PATH
+
+# Set the working directory to the user's home directory
+WORKDIR $HOME/app
+
+# Copy the current directory contents into the container at $HOME/app setting the owner to the user
+COPY --chown=user . $HOME/app
+## install Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH $PATH:/root/.local/bin
+RUN poetry config virtualenvs.create true \
+  && poetry config virtualenvs.in-project false
+
+RUN poetry install --no-dev
+RUN poetry install
+
 CMD ["poetry", "run", "streamlit", "run", "src/app.py", "--server.port", "7860"]
