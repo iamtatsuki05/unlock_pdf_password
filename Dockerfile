@@ -91,4 +91,4 @@ RUN poetry config virtualenvs.create true \
 RUN poetry install --no-dev
 RUN poetry install
 
-CMD ["poetry", "run", "streamlit", "run", "src/app.py", "--server.port", "7860", "--server.enableXsrfProtection", "false"]
+CMD ["poetry", "run", "streamlit", "run", "src/app.py", "--server.port", "7860"]
