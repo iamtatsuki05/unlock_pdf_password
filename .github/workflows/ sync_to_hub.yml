@@ -1,0 +1,19 @@
+name: Sync with Hugging Face Hub
+
+'on':
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync with Hugging Face
+        uses: nateraw/huggingface-sync-action@v0.0.5
+        with:
+          github_repo_id: iamtatsuki05/unlock_pdf_password
+          huggingface_repo_id: iamtatsuki05/unlock_pdf_password
+          repo_type: space
+          space_sdk: docker
+          hf_token: ${{ secrets.HF_TOKEN }}
