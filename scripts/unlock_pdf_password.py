@@ -1,13 +1,14 @@
 import logging
-from typing import Union, Optional
 from pathlib import Path
+from typing import Optional, Union
 
 import fire
 
-from unlock_pdf_password.unlock_pdf_password import unlock_pdf_password, unlock_pdf
+from unlock_pdf_password.unlock_pdf_password import unlock_pdf, unlock_pdf_password
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 def unlock_pdf_password_wrapper(
     input_pdf_path: Union[str, Path],
@@ -41,6 +42,7 @@ def unlock_pdf_password_wrapper(
         )
         logger.info(f'PDF unlocked successfully! Password: {password}')
     logger.error('Password not found')
+
 
 if __name__ == '__main__':
     fire.Fire(unlock_pdf_password)
