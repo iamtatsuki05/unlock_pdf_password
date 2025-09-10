@@ -52,7 +52,7 @@ WORKDIR ${WORKDIR}
 # install python packages
 COPY poetry.lock pyproject.toml ./
 COPY src ./src
-RUN poetry install --no-dev
+RUN poetry install --without dev
 
 FROM base AS dev
 WORKDIR ${WORKDIR}
