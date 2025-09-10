@@ -52,7 +52,7 @@ WORKDIR ${WORKDIR}
 # install python packages
 COPY poetry.lock pyproject.toml ./
 COPY src ./src
-RUN poetry install --no-dev
+RUN poetry install --without dev
 
 FROM base AS dev
 WORKDIR ${WORKDIR}
@@ -88,7 +88,7 @@ ENV PATH $PATH:/root/.local/bin
 RUN poetry config virtualenvs.create true \
   && poetry config virtualenvs.in-project false
 
-RUN poetry install --no-dev
+RUN poetry install --without dev
 RUN poetry install
 
 CMD ["poetry", "run", "streamlit", "run", "src/app.py", "--server.port", "7860"]
