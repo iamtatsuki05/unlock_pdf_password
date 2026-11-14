@@ -5,8 +5,11 @@ import streamlit as st
 
 from unlock_pdf_password.unlock_pdf_password import unlock_pdf, unlock_pdf_password
 
+HEADER_IMAGE = Path(__file__).resolve().parent.parent / 'images' / 'header.png'
+
 
 def app():
+    st.image(str(HEADER_IMAGE), use_column_width=True)
     st.title("PDF Unlocker")
 
     uploaded_file = st.file_uploader("Upload your PDF", type="pdf")
