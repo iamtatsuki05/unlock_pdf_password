@@ -1,0 +1,22 @@
+name: Sync with Hugging Face Hub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: huggingface/hub-sync@v0.3.0
+        with:
+          github_repo_id: ${{ github.repository }}
+          huggingface_repo_id: iamtatsuki05/unlock_pdf_password
+          hf_token: ${{ secrets.HF_TOKEN }}
+          space_sdk: docker
+          # Space の設定 frontmatter は Hub 側の README.md にだけあるため、上書きも削除もしない
+          exclude: |
+            README.md
+          delete_removed: false
